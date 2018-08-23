@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
     renderNavbar = () => {
@@ -7,17 +8,17 @@ class Header extends Component {
             return (<Navbar fixedTop={true} inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#brand">Kucing Bertasbih</a>
+                        <Link to="/">Kucing Bertasbih</Link>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
                 <Navbar.Collapse>
                     <Nav>
-                        <NavItem eventKey={1} href="#">
-                            About
+                        <NavItem eventKey={1}>
+                            <Link to="/albumlist">Album List</Link>
                         </NavItem>
-                        <NavItem eventKey={2} href="#">
-                            Contact
+                        <NavItem eventKey={2}>
+                            <Link to="/movielist">Movie List</Link>
                         </NavItem>
                         <NavDropdown eventKey={3} title="Products" id="basic-nav-dropdown">
                             <MenuItem eventKey={3.1}>Celana Dalam</MenuItem>
@@ -39,17 +40,17 @@ class Header extends Component {
         return (<Navbar fixedTop={true} inverse collapseOnSelect>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <a href="#brand">Kucing Bertasbih</a>
+                    <Link to="/">Kucing Bertasbih</Link>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
                 <Nav>
-                    <NavItem eventKey={1} href="#">
-                        About
+                    <NavItem eventKey={1}>
+                        <Link to="/albumlist">Album List</Link>
                     </NavItem>
-                    <NavItem eventKey={2} href="#">
-                        Contact
+                    <NavItem eventKey={2}>
+                        <Link to="/movielist">Movie List</Link>
                     </NavItem>
                     <NavDropdown eventKey={3} title="Products" id="basic-nav-dropdown">
                         <MenuItem eventKey={3.1}>Celana Dalam</MenuItem>
