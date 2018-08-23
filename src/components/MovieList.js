@@ -18,12 +18,14 @@ class MovieList extends Component {
     render() {
         console.log(this.state.movies);
         return (
-            <div className="container">
-                <h1>Ini Movie List</h1>
-                <div className="row">
-                    {this.renderMovieList()}
+            <section className="bg-light" id="portfolio">
+                <div className="container">
+                    <h1>Ini Movie List</h1>
+                    <div className="row">
+                        {this.renderMovieList()}
+                    </div>
                 </div>
-            </div>
+            </section>
         );
     }
 }

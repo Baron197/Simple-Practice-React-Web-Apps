@@ -7,7 +7,7 @@ import image3 from '../images/back.jpg';
 class HomePage extends Component {
     render() {
         return (
-            <div>
+            <div style={{ marginTop: "80px" }}>
                 <CarouselBro 
                     legend1={"BDO Image 1"} 
                     image1={image1} 

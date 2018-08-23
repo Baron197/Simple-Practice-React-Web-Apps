@@ -61,11 +61,11 @@ class Header extends Component {
                     </NavDropdown>
                 </Nav>
                 <Nav pullRight>
-                    <NavItem eventKey={1} href="#">
-                        Login
+                    <NavItem eventKey={1}>
+                        <Link to="/login">Login</Link>
                     </NavItem>
-                    <NavItem eventKey={2} href="#">
-                        Register
+                    <NavItem eventKey={2}>
+                        <Link to="/register">Register</Link>
                     </NavItem>
                 </Nav>
             </Navbar.Collapse>
