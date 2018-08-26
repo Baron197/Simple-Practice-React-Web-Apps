@@ -11,7 +11,7 @@ class MovieDetail extends Component {
                         <i className="fa fa-plus fa-3x"></i>
                         </div>
                     </div>
-                    <img className="img-responsive" src={image} alt="" />
+                    <img style={{ margin: "auto"}} className="img-responsive" src={image} alt="" />
                 </a>
                 <div className="portfolio-caption">
                     <h4>{title}</h4>
