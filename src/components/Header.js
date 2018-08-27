@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Nav, Navbar, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Header extends Component {
     renderNavbar = () => {
-        if(this.props.loggedIn) {
+        if(this.props.auth.username != "") {
             return (<Navbar fixedTop={true} inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
@@ -30,7 +31,7 @@ class Header extends Component {
                     </Nav>
                     <Nav pullRight>
                         <NavItem eventKey={1} href="#">
-                            Hello, {this.props.username}
+                            Hello, {this.props.auth.username}
                         </NavItem>
                     </Nav>
                 </Navbar.Collapse>
@@ -78,4 +79,10 @@ class Header extends Component {
     }
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+    const auth = state.auth;
+
+    return { auth };
+}
+
+export default connect(mapStateToProps)(Header);

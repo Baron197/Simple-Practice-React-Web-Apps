@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import data from '../exdata/MovieList.json';
+import axios from 'axios';
 import MovieDetail from './MovieDetail';
+import { API_URL_1 } from '../supports/api-url/apiurl';
 
 class MovieList extends Component {
     state = { movies: [] }
 
     componentWillMount() {
-       this.setState({ movies: data });
+        axios.get(API_URL_1 + '/movies')
+        .then(movie => {
+            this.setState({ movies: movie.data });
+        });
     }
 
     renderMovieList = () => {
