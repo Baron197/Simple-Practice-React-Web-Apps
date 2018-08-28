@@ -11,7 +11,7 @@ export const onLogin = (user) => {
         }).then(user => {
             dispatch({
                 type: "USER_LOGIN_SUCCESS", 
-                payload: { username: user.data[0].username, email: user.data[0].email }
+                payload: { username: user.data[0].username, email: user.data[0].email, error: "" }
             });
         }).catch(err => {
             console.log(err);
@@ -21,3 +21,25 @@ export const onLogin = (user) => {
         })
     }
 };
+
+export const onLogout = () => {
+    return {
+        type: "USER_LOGOUT"
+    };
+}
+
+export const onRegister = (user) => {
+    return (dispatch) => {
+        axios.post(API_URL_1 + '/users', user)
+        .then((res) => {
+            console.log(res);
+            dispatch({
+                type: "USER_LOGIN_SUCCESS", 
+                payload: { username: res.data.username, email: res.data.email, error: "" }
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    }
+}

@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import MovieDetail from './MovieDetail';
 import { API_URL_1 } from '../supports/api-url/apiurl';
@@ -21,17 +23,25 @@ class MovieList extends Component {
 
     render() {
         console.log(this.state.movies);
-        return (
-            <section className="bg-light" id="portfolio">
-                <div className="container">
-                    <h1>Ini Movie List</h1>
-                    <div className="row">
-                        {this.renderMovieList()}
+        if(this.props.auth.username != "") {
+            return (
+                <section className="bg-light" id="portfolio">
+                    <div className="container">
+                        <h1>Ini Movie List</h1>
+                        <div className="row">
+                            {this.renderMovieList()}
+                        </div>
                     </div>
-                </div>
-            </section>
-        );
+                </section>
+            );
+        }
+        
+        return <Redirect to="/login" />;
     }
 }
 
-export default MovieList;
+const mapStateToProps = (state) => {
+    return { auth: state.auth };
+}
+
+export default connect(mapStateToProps)(MovieList);

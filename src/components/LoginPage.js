@@ -51,7 +51,7 @@ class LoginPage extends Component {
                                         <a href="reset.html">Forgot password?</a>
                                     </div>
                                     <input type="button" className="btn btn-primary" value="Login" onClick={this.onLoginClick}/>
-    
+                                    <h2 className="label-danger">{this.props.auth.error}</h2>
                                 </form>
                             </div>
                             <p className="botto-text"> Designed by Sunil Rajput</p>
