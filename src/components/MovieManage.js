@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { API_URL_1 } from '../supports/api-url/apiurl';
+import MovieManageDetail from './MovieManageDetail';
 
 
 class MovieManage extends Component {
@@ -49,19 +50,7 @@ class MovieManage extends Component {
     renderMovieList = () => {
         const list = this.state.movieList.map((item) => {
             return (
-                <tr>
-                    <td>{item.id}</td>
-                    <td>{item.title}</td>
-                    <td>{item.description}</td>
-                    <td>{item.url}</td>
-                    <td><img style={{ height: "100px"}} className="img-responsive" src={item.image} /></td>
-                    <td>
-                        <input type="button" className="btn btn-success" value="Edit" />
-                    </td>
-                    <td>
-                        <input type="button" className="btn btn-danger" value="Delete" onClick={() => this.onBtnDeleteClick(item.id)}/>
-                    </td>
-                </tr>
+                <MovieManageDetail item={item} fnDel={() => this.onBtnDeleteClick(item.id)}/>
             );
         });
         return list;
