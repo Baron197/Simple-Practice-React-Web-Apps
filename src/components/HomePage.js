@@ -5,6 +5,7 @@ import image2 from '../images/bdo2.jpg';
 import image3 from '../images/back.jpg';
 
 class HomePage extends Component {
+
     render() {
         return (
             <div style={{ marginTop: "80px" }}>
