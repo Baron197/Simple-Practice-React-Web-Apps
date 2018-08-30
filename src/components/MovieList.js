@@ -23,7 +23,7 @@ class MovieList extends Component {
 
     render() {
         console.log(this.state.movies);
-        if(this.props.auth.username != "") {
+        if(this.props.auth.username !== "") {
             return (
                 <section className="bg-light" id="portfolio">
                     <div className="container">

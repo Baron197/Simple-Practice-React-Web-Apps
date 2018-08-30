@@ -12,15 +12,15 @@ class CarouselBro extends Component {
             <div>
                 <Carousel showThumbs={false} showIndicators={false} className="container kucing">
                     <div className="merdeka">
-                        <img src={this.props.image1} />
+                        <img src={this.props.image1} alt="BDO 1" />
                         <p className="legend">{this.props.legend1}</p>
                     </div>
                     <div className="merdeka">
-                        <img src={this.props.image2} />
+                        <img src={this.props.image2} alt="BDO 2" />
                         <p className="legend">{this.props.legend2}</p>
                     </div>
                     <div className="merdeka">
-                        <img src={this.props.image3} />
+                        <img src={this.props.image3} alt="BDO 3"/>
                         <p className="legend">{this.props.legend3}</p>
                     </div>
                 </Carousel>

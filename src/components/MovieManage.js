@@ -5,7 +5,12 @@ import MovieManageDetail from './MovieManageDetail';
 
 
 class MovieManage extends Component {
-    state = { movieList: [] }
+    state = { movieList: [], selectedEditId: 0, editItem : {
+        editTitle: "",
+        editDescription: "",
+        editUrl: "",
+        editImage: ""
+    }, editing: false}
 
     componentWillMount() {
         this.getMovieList();
@@ -14,7 +19,7 @@ class MovieManage extends Component {
     getMovieList = () => {
         axios.get(API_URL_1 + "/movies")
         .then((response) => {
-            this.setState({ movieList: response.data });
+            this.setState({ movieList: response.data, selectedEditId: 0, editing: false });
         }).catch((err) => {
             console.log(err);
         })
@@ -35,8 +40,8 @@ class MovieManage extends Component {
     }
 
     onBtnDeleteClick = (movieId) => {
-        // var check = confirm("Are you sure to delete this?");
-        // if(check == true) {
+        var check = window.confirm("Are you sure to delete this?");
+        if(check) {
             axios.delete(API_URL_1 + "/movies/" + movieId)
             .then((response) => {
                 this.getMovieList();
@@ -44,13 +49,60 @@ class MovieManage extends Component {
                 alert("Delete Error!");
                 console.log(err);
             })
-        // }    
+        }    
+    }
+
+    onBtnEditClick = (movieId) => {
+        this.setState({ selectedEditId: movieId });
+    }
+
+    onBtnUpdateClick = (movieId, refsEdit) => {
+        axios.put(API_URL_1 + "/movies/" + movieId, {
+            title: refsEdit.inputEditTitle.value,
+            description: refsEdit.inputEditDesc.value,
+            url: refsEdit.inputEditUrl.value,
+            image: refsEdit.inputEditImage.value
+        }).then((response) => {
+            this.getMovieList();
+        }).catch((err) => {
+            alert("Edit Error!");
+            console.log(err);
+        });
+    }
+
+    onInputEditItem = (value, theInput) => {
+        if(theInput === "Title") {
+            this.setState({ editItem : { editTitle: value }});
+        }
+        else if(theInput === "Description") {
+            this.setState({ editItem : { editDescription: value }});
+        }
+        else if(theInput === "Url") {
+            this.setState({ editItem : { editUrl: value }});
+        }
+        else if(theInput === "Image") {
+            this.setState({ editItem : { editImage: value }});
+        }
     }
 
     renderMovieList = () => {
         const list = this.state.movieList.map((item) => {
+            if(item.id === this.state.selectedEditId 
+                && this.state.editing === false) {
+                this.state.editItem = {
+                    editTitle: item.title,
+                    editDescription: item.description,
+                    editUrl: item.url,
+                    editImage: item.image
+                }
+                this.state.editing = true;
+            }  
             return (
-                <MovieManageDetail item={item} fnDel={() => this.onBtnDeleteClick(item.id)}/>
+                <MovieManageDetail item={item} selectEditId={this.state.selectedEditId} 
+                    fnDel={() => this.onBtnDeleteClick(item.id)} fnEdit={() => this.onBtnEditClick(item.id)}
+                    fnUpdate={(editRef) => this.onBtnUpdateClick(item.id, editRef)}
+                    setManageState={this.onInputEditItem}
+                    EditItemManageState={this.state.editItem}/>
             );
         });
         return list;

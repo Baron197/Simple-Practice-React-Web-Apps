@@ -22,7 +22,7 @@ class LoginPage extends Component {
     
     render() {
         // console.log(this.obj1(this.test(7), 8)(5)[1]);
-        if(this.props.auth.username == ""){
+        if(this.props.auth.username === ""){
             return (
                 <div className="login-background">
                     <div className="container">
